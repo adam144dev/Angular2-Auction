@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import ApplicationComponent from "./components/application/application";
 import CarouselComponent from "./components/carousel/carousel";
 import FooterComponent from "./components/footer/footer";
@@ -9,8 +11,12 @@ import SearchComponent from "./components/search/search";
 import StarsComponent from "./components/stars/stars";
 import {ProductService} from "./services/product-service";
 
+const routes: Routes = [ 
+    { path: '', component: HomeComponent },
+    { path: 'product', component: ProductDetailComponent }
+];
 @NgModule({ 
-    imports: [ BrowserModule ],
+    imports: [ BrowserModule, RouterModule.forRoot(routes) ],
     declarations: [
         ApplicationComponent, 
         CarouselComponent, 
@@ -20,8 +26,13 @@ import {ProductService} from "./services/product-service";
         SearchComponent,
         StarsComponent
     ],
-    providers: [ ProductService ], 
+    providers: [
+        ProductService,
+        { provide: LocationStrategy, useClass: HashLocationStrategy }
+    ],
     bootstrap: [ ApplicationComponent ]
 }) 
     
 export class AppModule { }
+
+
