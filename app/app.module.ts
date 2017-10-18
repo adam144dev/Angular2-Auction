@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import ApplicationComponent from './components/application/application';
 import CarouselComponent from "./components/carousel/carousel";
@@ -15,7 +15,7 @@ import ProductDetailComponent from "./components/product-detail/product-detail";
 
 const routes: Routes = [ 
     { path: '', component: HomeComponent },
-    { path: 'products/:prodTitle', component: ProductDetailComponent }
+    { path: 'products/:productId', component: ProductDetailComponent }
 ];
 @NgModule({ 
     imports: [ BrowserModule, RouterModule.forRoot(routes) ],
